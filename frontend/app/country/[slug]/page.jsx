@@ -3,11 +3,19 @@
 import { useState, useEffect } from "react";
 import { useParams } from "next/navigation";
 import Image from "next/image"; // Kita akan gunakan untuk logo
-import "./.scss"; // Ganti nama file SCSS agar lebih deskriptif
 
 // Komponen ikon centang kecil
 const CheckIcon = () => (
-  <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#22c55e" strokeWidth="3" strokeLinecap="round" strokeLinejoin="round">
+  <svg
+    width="14"
+    height="14"
+    viewBox="0 0 24 24"
+    fill="none"
+    stroke="#22c55e"
+    strokeWidth="3"
+    strokeLinecap="round"
+    strokeLinejoin="round"
+  >
     <polyline points="20 6 9 17 4 12"></polyline>
   </svg>
 );
@@ -50,22 +58,27 @@ export default function LayananDetailPage() {
   return (
     <main>
       {/* HERO SECTION UNTUK DETAIL NEGARA */}
-      <section 
-        id="layanan-hero" 
+      <section
+        id="layanan-hero"
         style={{ backgroundImage: `url(${countryData.image})` }}
       >
         <div className="hero-overlay">
           <div className="container">
             {/* Header placeholder - Anda bisa ganti dengan komponen Header asli */}
             <div className="header-placeholder">
-                <Image src="/images/logo-white.png" alt="MasterVisa Logo" width={150} height={30} />
-                <nav>
-                    <a href="#">List Layanan Visa</a>
-                    <a href="#">Cara Kerja</a>
-                    <a href="#">Testimoni</a>
-                    <a href="#">FAQ</a>
-                    <a href="#">Blog</a>
-                </nav>
+              <Image
+                src="/images/logo-white.png"
+                alt="MasterVisa Logo"
+                width={150}
+                height={30}
+              />
+              <nav>
+                <a href="#">List Layanan Visa</a>
+                <a href="#">Cara Kerja</a>
+                <a href="#">Testimoni</a>
+                <a href="#">FAQ</a>
+                <a href="#">Blog</a>
+              </nav>
             </div>
             <h1>{countryData.name}</h1>
           </div>
@@ -84,29 +97,36 @@ export default function LayananDetailPage() {
                 <div className="card-body">
                   <h3>{pkg.title}</h3>
                   <p className="description">{pkg.description}</p>
-                  
+
                   <div className="we-serve">
                     <h4>Kami melayani:</h4>
                     <ul>
-                      {Array.isArray(pkg.weServe) && pkg.weServe.map((item, index) => (
-                        <li key={index}><CheckIcon /> {item}</li>
-                      ))}
+                      {Array.isArray(pkg.weServe) &&
+                        pkg.weServe.map((item, index) => (
+                          <li key={index}>
+                            <CheckIcon /> {item}
+                          </li>
+                        ))}
                     </ul>
                   </div>
                 </div>
                 <div className="card-footer">
                   <span>Mulai dari</span>
-                  <p className="price">Rp {pkg.price1.toLocaleString('id-ID')}</p>
+                  <p className="price">
+                    Rp {pkg.price1.toLocaleString("id-ID")}
+                  </p>
                   {/* Di sini, tombol bisa mengarah ke halaman booking spesifik */}
                   {/* Contoh: <Link href={`/booking/${pkg.id}`}> */}
-                  <a href="#" className="book-btn">Pesan Paket Ini</a>
+                  <a href="#" className="book-btn">
+                    Pesan Paket Ini
+                  </a>
                 </div>
               </div>
             ))}
             {/* Duplikasi untuk memenuhi UI di gambar */}
             {countryData.packages.map((pkg) => (
               <div key={`${pkg.id}-dup`} className="package-card">
-                 {/* ... Konten kartu sama persis seperti di atas ... */}
+                {/* ... Konten kartu sama persis seperti di atas ... */}
               </div>
             ))}
           </div>
