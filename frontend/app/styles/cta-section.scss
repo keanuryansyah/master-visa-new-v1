@@ -1,0 +1,95 @@
+#cta-section {
+  position: relative;
+  padding: 8rem 0;
+  background-image: url('/images/cta-bg.png'); // GANTI DENGAN PATH GAMBAR ANDA
+  background-size: cover;
+  background-position: center;
+  color: #ffffff;
+  overflow: hidden;
+  height: 700px;
+
+  // Overlay gelap untuk readability
+  &::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background-color: rgba(0, 0, 0, 0.2);
+    z-index: 1;
+  }
+
+  .container {
+    position: relative;
+    z-index: 2;
+    height: 100%;
+  }
+
+  .cta-content {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    gap: 2rem;
+    height: 100%;
+
+    .cta-title {
+        width: 50%;
+    }
+
+    .buttons-wrapper {
+      display: flex;
+      gap: 1rem;
+      
+      .cta-btn {
+        border-radius: 50px;
+        text-decoration: none;
+        border: 2px solid transparent;
+        transition: all 0.3s ease;
+        font-size: 0.95rem;
+
+        &:first-child {
+            border: 2px solid #ffffff;
+            color: #ffffff;
+        }
+
+        &.outline-btn {
+          background-color: transparent;
+          border-color: #ffffff;
+          color: #ffffff;
+          backdrop-filter: blur(5px);
+
+          &:hover {
+            background-color: rgba(255, 255, 255, 0.15);
+          }
+        }
+
+        &.solid-btn {
+          background-color: #ffffff;
+          border-color: #ffffff;
+          color: var(--col-purple-1);
+
+          &:hover {
+            background-color: #f0f0f0;
+            border-color: #f0f0f0;
+          }
+        }
+      }
+    }
+  }
+
+  // Media queries
+  @media (max-width: 768px) {
+    padding: 6rem 0;
+    .cta-content .section-title {
+      font-size: 2.5rem;
+    }
+    .buttons-wrapper {
+        flex-direction: column;
+        width: 80%;
+        max-width: 300px;
+        .cta-btn {
+            width: 100%;
+        }
+    }
+  }
+}

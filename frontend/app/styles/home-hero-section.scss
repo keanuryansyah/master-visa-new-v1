@@ -1,0 +1,150 @@
+#home-hero-section {
+  background-image: url("/images/home-hero-background.png");
+  background-size: cover;
+  background-position: center;
+  height: 100vh;
+  margin-top: -120px;
+  padding-top: 120px;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  .container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100%;
+  }
+
+  .hero-content {
+    position: relative;
+    z-index: 2;
+    background-color: rgba(255, 255, 255, 0.4);
+    border-color: rgba(255, 255, 255, 0.5);
+    backdrop-filter: blur(15px);
+    border-radius: 16px;
+    box-shadow: 0 6px 35px rgba(0, 0, 0, 0.12);
+    /*📏Ukurandantataletak*/
+    width: 85%;
+    gap: 1.5rem;
+    padding: 2rem;
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-between;
+    .tagline {
+      color: var(--col-blue-1);
+    }
+    h1 {
+      color: var(--col-black-2);
+    }
+    .home-hero-desc {
+      display: flex;
+      align-items: center;
+      .col {
+        display: flex;
+        flex-direction: column;
+        padding: 0 2rem;
+        height: max-content;
+        &:nth-child(2) {
+          border-left: 1px solid var(--col-purple-1);
+          border-right: 1px solid var(--col-purple-1);
+        }
+        > span:nth-child(1) {
+          font-size: 40px;
+          color: var(--col-purple-1);
+        }
+        > span:nth-child(2) {
+          color: var(--col-purple-1);
+        }
+        &.col-4 {
+          gap: 1rem;
+        }
+        .col-row {
+          display: flex;
+          align-items: center;
+          gap: 0.5rem;
+          img {
+            object-fit: contain;
+            width: 36px;
+          }
+        }
+      }
+    }
+    .buttons {
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+    }
+  }
+
+  .hero-stats {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 3rem;
+    margin-top: 1rem;
+
+    div {
+      text-align: center;
+
+      h3 {
+        font-size: 1.9rem;
+        font-weight: 700;
+        color: #5a004f;
+      }
+
+      p {
+        color: #333;
+        font-size: 1rem;
+      }
+    }
+
+    /* Garis pembatas vertikal seperti gambar */
+    div:not(:last-child)::after {
+      content: "";
+      position: absolute;
+      right: -1.5rem;
+      top: 50%;
+      transform: translateY(-50%);
+      width: 1px;
+      height: 45px;
+      background-color: rgba(0, 0, 0, 0.15);
+    }
+  }
+
+  .hero-buttons {
+    margin-top: 1.5rem;
+    display: flex;
+    justify-content: center;
+    gap: 1rem;
+
+    button {
+      border-radius: 40px;
+      padding: 0.8rem 2.2rem;
+      font-weight: 600;
+      font-size: 1rem;
+      border: none;
+      transition: all 0.3s ease;
+      cursor: pointer;
+
+      &.secondary {
+        background-color: transparent;
+        border: 1.8px solid #6a005f;
+        color: #6a005f;
+      }
+
+      &.primary {
+        background-color: #6a005f;
+        color: white;
+      }
+
+      &:hover {
+        transform: scale(1.04);
+        filter: brightness(1.05);
+      }
+    }
+  }
+}

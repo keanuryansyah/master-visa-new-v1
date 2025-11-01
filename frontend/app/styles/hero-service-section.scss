@@ -1,0 +1,23 @@
+#hero-service-section {
+  height: 500px;
+  background-image: url("/images/hero-service-section-bg.png");
+  margin-top: -120px;
+  // background-position: center;
+  .container {
+    height: 100%;
+    .hero-service-ctn {
+      height: 100%;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      gap: 2rem;
+      padding-top: 120px;
+      h2 {
+        width: 60%;
+        text-align: center;
+        color: white;
+      }
+    }
+  }
+}

@@ -1,0 +1,139 @@
+#faq-section {
+  position: relative;
+  background-image: url('/images/faq-bg.png'); // Ganti dengan path gambar Anda
+  background-size: cover;
+  background-position: center;
+  color: white;
+
+  // Overlay gelap untuk readability
+  &::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background-color: rgba(0, 0, 0, 0.4);
+    z-index: 1;
+  }
+
+  .container {
+    position: relative;
+    z-index: 2;
+  }
+
+  .faq-content {
+    display: grid;
+    grid-template-columns: 1fr 1.5fr;
+    gap: 2rem;
+    align-items: center;
+  }
+
+  .faq-intro {
+    text-align: left;
+    .section-title {
+      font-size: 3.5rem;
+      line-height: 1.2;
+      margin-bottom: 2rem;
+    }
+    .faq-btn {
+      display: inline-block;
+      border: 1px solid white;
+      border-radius: 50px;
+      text-decoration: none;
+      color: white;
+      transition: background-color 0.3s ease, color 0.3s ease;
+
+      &:hover {
+        background-color: white;
+        color: #1a202c;
+      }
+    }
+  }
+
+  .faq-accordion {
+    background: rgba(255, 255, 255, 0.6);
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px); // Untuk Safari
+    border-radius: 24px;
+    padding: 1rem 0;
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.2);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    
+    .accordion-item {
+      padding: 0 2rem;
+      border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+      color: #1a202c;
+
+      &:last-child {
+        border-bottom: none;
+      }
+    }
+
+    .accordion-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 1.5rem 0;
+      cursor: pointer;
+      gap: 1rem;
+      
+      p {
+        // font-weight: 600;
+        margin: 0;
+        font-size: 1.2rem;
+      }
+
+      .chevron-icon {
+        flex-shrink: 0;
+        transition: transform 0.3s ease-in-out;
+      }
+    }
+    
+    .accordion-body {
+      max-height: 0;
+      overflow: hidden;
+      transition: max-height 0.4s ease-out, padding-bottom 0.4s ease-out;
+      
+      p {
+        color: #4a5568;
+        font-size: 0.95rem;
+        line-height: 1.6;
+        padding-bottom: 0;
+      }
+    }
+    
+    // State ketika akordeon terbuka
+    .accordion-item.active {
+      .chevron-icon {
+        transform: rotate(180deg);
+      }
+      .accordion-body {
+        max-height: 200px; // Tinggi maksimal konten
+        
+        p {
+          padding-bottom: 1.5rem;
+        }
+      }
+    }
+  }
+
+  // Media queries
+  @media (max-width: 1024px) {
+    .faq-content {
+      grid-template-columns: 1fr;
+      gap: 3rem;
+    }
+    .faq-intro {
+      text-align: center;
+    }
+  }
+
+  @media (max-width: 768px) {
+    .faq-intro .section-title {
+      font-size: 2.5rem;
+    }
+    .faq-accordion {
+      .accordion-item {
+        padding: 0 1.5rem;
+      }
+    }
+  }
+}

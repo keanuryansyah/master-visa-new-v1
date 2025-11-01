@@ -1,0 +1,138 @@
+#country-list-section {
+  background-image: url("/images/bg-image.png"); // Ganti dengan path gambar peta dunia Anda
+  // background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  text-align: center;
+
+  .country-list-content {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 2rem;
+
+    .section-title {
+      color: #1a202c; // Warna teks gelap
+    }
+
+    .country-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 1.5rem;
+      width: 100%;
+      margin-top: 1rem;
+
+      .country-card {
+        position: relative;
+        height: 320px;
+        border-radius: 16px;
+        background-size: cover;
+        background-position: center;
+        overflow: hidden;
+        display: flex;
+        flex-direction: column;
+        justify-content: flex-end;
+        padding: 1.5rem;
+        color: white;
+        text-align: left;
+        box-shadow: 0 8px 24px rgba(0, 0, 0, 0.1);
+        transition: transform 0.3s ease, box-shadow 0.3s ease;
+
+        &:hover {
+          transform: translateY(-5px);
+          box-shadow: 0 12px 32px rgba(0, 0, 0, 0.15);
+        }
+
+        // Efek overlay gelap di bawah
+        &::before {
+          content: "";
+          position: absolute;
+          inset: 0;
+          background: linear-gradient(
+            180deg,
+            transparent 50%,
+            rgba(0, 0, 0, 0.8) 100%
+          );
+          z-index: 1;
+        }
+
+        .card-content {
+          position: relative;
+          z-index: 2;
+
+          h3 {
+            font-size: 1.5rem;
+            font-weight: 700;
+            margin: 0 0 1rem 0;
+            text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.4);
+          }
+
+          .card-buttons {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+
+            .card-btn {
+              padding: 0.5rem 1rem;
+              border-radius: 50px;
+              text-decoration: none;
+              border: 1px solid transparent;
+              transition: all 0.3s ease;
+              display: inline-flex;
+              align-items: center;
+              justify-content: center;
+              &.btn-requirement {
+                background-color: rgba(255, 255, 255, 0.15);
+                border-color: rgba(255, 255, 255, 0.5);
+                color: white;
+                backdrop-filter: blur(5px);
+
+                &:hover {
+                  background-color: rgba(255, 255, 255, 0.3);
+                }
+              }
+
+              &.btn-booking {
+                background-color: #ffffff;
+                color: var(--col-purple-1);
+                display: flex;
+                align-items: center;
+                gap: 0.5rem;
+                &:hover {
+                  background-color: #f0f0f0;
+                  transform: scale(1.05);
+                }
+
+                span {
+                  margin-left: 0.25rem;
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+
+    .consultation-prompt {
+      font-size: 24px;
+      color: var(--col-blue-1);
+      margin-top: 1rem;
+    }
+  }
+
+  // Media queries untuk responsivitas
+  @media (max-width: 1024px) {
+    .country-grid {
+      grid-template-columns: repeat(2, 1fr) !important;
+    }
+  }
+
+  @media (max-width: 768px) {
+    .country-grid {
+      grid-template-columns: 1fr !important;
+    }
+    .search-bar {
+      max-width: 100%;
+    }
+  }
+}

@@ -1,0 +1,76 @@
+/* Variabel untuk konsistensi */
+$primary-color: #4f46e5;
+$text-color: #1f2937;
+$subtitle-color: #6b7280;
+$card-bg: #ffffff;
+$border-color: #e5e7eb;
+$shadow-color: rgba(0, 0, 0, 0.05);
+
+.admin-dashboard-container {
+  padding: 2.5rem;
+  max-width: 1200px;
+  margin: 0 auto;
+
+  h1 {
+    font-size: 2.25rem;
+    font-weight: 800;
+    color: $text-color;
+    margin-bottom: 0.5rem;
+  }
+
+  .dashboard-subtitle {
+    font-size: 1.1rem;
+    color: $subtitle-color;
+    margin-bottom: 2.5rem;
+  }
+}
+
+.dashboard-grid {
+  display: grid;
+  // Membuat kolom yang responsif secara otomatis
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 1.5rem;
+}
+
+.dashboard-card {
+  display: block; // Agar Link bisa di-style sebagai blok
+  background-color: $card-bg;
+  border: 1px solid $border-color;
+  border-radius: 12px;
+  padding: 2rem;
+  text-decoration: none; // Menghilangkan garis bawah link
+  color: $text-color;
+  transition: transform 0.2s ease, box-shadow 0.2s ease, border-color 0.2s ease;
+  box-shadow: 0 4px 6px -1px $shadow-color;
+
+  .card-icon {
+    width: 48px;
+    height: 48px;
+    margin-bottom: 1rem;
+    color: $primary-color; // Memberi warna pada ikon SVG
+
+    svg {
+      width: 100%;
+      height: 100%;
+    }
+  }
+
+  h3 {
+    font-size: 1.25rem;
+    font-weight: 600;
+    margin-bottom: 0.5rem;
+  }
+
+  p {
+    color: $subtitle-color;
+    line-height: 1.6;
+  }
+
+  // Efek interaktif saat mouse hover
+  &:hover {
+    transform: translateY(-5px);
+    border-color: $primary-color;
+    box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.07),
+      0 4px 6px -2px rgba(0, 0, 0, 0.05);
+  }
+}

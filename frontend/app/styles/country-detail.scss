@@ -1,0 +1,140 @@
+// Styling untuk Halaman Detail Layanan
+
+#layanan-hero {
+  height: 50vh;
+  background-size: cover;
+  background-position: center;
+  position: relative;
+  color: white;
+
+  .hero-overlay {
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(180deg, rgba(0,0,0,0.6) 0%, rgba(0,0,0,0.2) 50%, transparent 100%);
+    display: flex;
+    flex-direction: column;
+    
+    h1 {
+      font-size: 3.5rem;
+      text-align: center;
+      text-shadow: 0 2px 10px rgba(0,0,0,0.5);
+      position: absolute;
+      bottom: 2rem;
+      left: 50%;
+      transform: translateX(-50%);
+    }
+  }
+}
+
+// Placeholder untuk header di dalam hero
+.header-placeholder {
+    padding-top: 2rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    nav {
+        display: flex;
+        gap: 1.5rem;
+        a {
+            color: white;
+            text-decoration: none;
+            font-weight: 500;
+        }
+    }
+}
+
+#package-list-section {
+  padding: 4rem 0;
+  background-color: #f7f9fc;
+  margin-top: -80px; // Menarik section ini ke atas, di atas hero
+  position: relative;
+  z-index: 2;
+
+  .packages-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 2rem;
+  }
+}
+
+.package-card {
+  background: white;
+  border-radius: 16px;
+  border: 1px solid #e2e8f0;
+  box-shadow: 0 4px 6px -1px rgba(0,0,0,0.05), 0 2px 4px -1px rgba(0,0,0,0.03);
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+
+  .card-header {
+    padding: 1rem 1.5rem;
+  }
+  .country-tag {
+    background-color: #fce7f3;
+    color: #be185d;
+    font-size: 0.8rem;
+    font-weight: 600;
+    padding: 0.25rem 0.75rem;
+    border-radius: 50px;
+  }
+
+  .card-body {
+    padding: 0 1.5rem;
+    flex-grow: 1;
+
+    h3 {
+      font-size: 1.3rem;
+      margin-bottom: 0.5rem;
+    }
+    .description {
+      font-size: 0.9rem;
+      color: #666;
+      line-height: 1.6;
+      margin-bottom: 1.5rem;
+    }
+  }
+
+  .we-serve {
+    h4 {
+      font-size: 0.9rem;
+      font-weight: 600;
+      margin-bottom: 0.75rem;
+    }
+    ul {
+      list-style: none;
+      padding: 0;
+      margin: 0 0 1.5rem 0;
+      li {
+        display: flex;
+        align-items: center;
+        gap: 0.5rem;
+        font-size: 0.9rem;
+        color: #333;
+        margin-bottom: 0.5rem;
+      }
+    }
+  }
+
+  .card-footer {
+    border-top: 1px solid #e2e8f0;
+    padding: 1rem 1.5rem;
+    background-color: #fdfdfe;
+    
+    span {
+      font-size: 0.85rem;
+      color: #777;
+    }
+    .price {
+      font-size: 1.5rem;
+      font-weight: 700;
+      color: #1d4ed8;
+      margin: 0.25rem 0 1rem 0;
+    }
+  }
+}
+
+.page-state {
+  padding: 5rem;
+  text-align: center;
+  font-size: 1.5rem;
+}

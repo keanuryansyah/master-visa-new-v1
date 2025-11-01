@@ -1,0 +1,381 @@
+/* ==========================================================================
+   1. Variabel dan Mixin
+   ========================================================================== */
+$primary-color: #4f46e5;
+$danger-color: #ef4444;
+$success-color: #22c55e;
+$text-color: #1f2937;
+$text-light: #6b7280;
+$border-color: #e5e7eb;
+$light-gray: #f9fafb;
+$hover-gray: #f3f4f6;
+
+@mixin button-base {
+  padding: 0.75rem 1.5rem;
+  border-radius: 10px;
+  font-weight: 600;
+  border: none;
+  cursor: pointer;
+  transition: all 0.2s ease-in-out;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  font-size: 0.95rem;
+  &:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.1);
+  }
+}
+
+/* ==========================================================================
+   2. Tata Letak Utama & Header
+   ========================================================================== */
+.crud-container {
+  padding: 1.5rem;
+  max-width: 1200px;
+  margin: 0 auto;
+  font-family: "Inter", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
+    "Helvetica Neue", Arial, sans-serif;
+
+  .btn-back {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    margin-bottom: 1.5rem;
+    text-decoration: none;
+    color: $text-light;
+    font-weight: 500;
+    font-size: 0.9rem;
+    transition: all 0.2s ease;
+    &:hover {
+      color: $primary-color;
+      gap: 0.75rem;
+    }
+  }
+
+  .crud-header {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    align-items: center;
+    gap: 1rem;
+    margin-bottom: 2rem;
+
+    h1 {
+      font-size: 2.25rem;
+      font-weight: 800;
+      color: $text-color;
+    }
+
+    .btn-primary {
+      @include button-base;
+      background-color: $primary-color;
+      color: white;
+      box-shadow: 0 4px 10px rgba($primary-color, 0.3);
+      &:hover {
+        background-color: darken($primary-color, 8%);
+      }
+    }
+  }
+}
+
+/* ==========================================================================
+   3. Tabel
+   ========================================================================== */
+.crud-table {
+  width: 100%;
+  border-collapse: collapse;
+  background-color: white;
+  border-radius: 12px;
+  overflow: hidden;
+  box-shadow: 0 8px 24px rgba(149, 157, 165, 0.1);
+
+  th,
+  td {
+    padding: 1rem 1.5rem;
+    text-align: left;
+    vertical-align: middle;
+  }
+
+  thead {
+    background-color: $light-gray;
+    th {
+      font-weight: 600;
+      color: $text-light;
+      text-transform: uppercase;
+      font-size: 0.75rem;
+      letter-spacing: 0.05em;
+    }
+  }
+
+  tbody {
+    tr {
+      transition: background-color 0.2s ease;
+      border-bottom: 1px solid $border-color;
+      &:hover {
+        background-color: $hover-gray;
+      }
+    }
+    tr:last-child {
+      border-bottom: none;
+    }
+  }
+
+  img {
+    width: 80px;
+    height: 50px;
+    border-radius: 6px;
+    object-fit: cover;
+  }
+
+  .actions {
+    display: flex;
+    gap: 0.5rem;
+    flex-wrap: wrap;
+
+    .btn-edit,
+    .btn-delete,
+    .btn-manage {
+      padding: 0.5rem 0.9rem;
+      border-radius: 8px;
+      font-weight: 500;
+      border: none;
+      cursor: pointer;
+      font-size: 0.875rem;
+      transition: all 0.2s ease;
+    }
+    .btn-edit {
+      background-color: lighten($success-color, 40%);
+      color: darken($success-color, 10%);
+      &:hover {
+        background-color: lighten($success-color, 35%);
+      }
+    }
+    .btn-delete {
+      background-color: lighten($danger-color, 28%);
+      color: darken($danger-color, 10%);
+      &:hover {
+        background-color: lighten($danger-color, 25%);
+      }
+    }
+    .btn-manage {
+      background-color: lighten($primary-color, 38%);
+      color: darken($primary-color, 10%);
+      &:hover {
+        background-color: lighten($primary-color, 35%);
+      }
+    }
+  }
+}
+
+/* ==========================================================================
+   4. Modal
+   ========================================================================== */
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+@keyframes scaleUp {
+  from {
+    transform: scale(0.95);
+    opacity: 0;
+  }
+  to {
+    transform: scale(1);
+    opacity: 1;
+  }
+}
+
+.modal-overlay {
+  position: fixed;
+  inset: 0;
+  background-color: rgba(17, 24, 39, 0.6);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1000;
+  backdrop-filter: blur(4px);
+  animation: fadeIn 0.3s ease;
+  padding: 1rem;
+}
+
+.modal-content {
+  background-color: white;
+  padding: 2.5rem;
+  border-radius: 16px;
+  width: 100%;
+  max-width: 500px;
+  box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1),
+    0 10px 10px -5px rgba(0, 0, 0, 0.04);
+  animation: scaleUp 0.3s ease;
+  max-height: 90vh;
+  overflow-y: auto;
+
+  &.large {
+    max-width: 900px;
+  }
+
+  h2 {
+    font-size: 1.75rem;
+    font-weight: 700;
+    margin-top: 0;
+    margin-bottom: 2rem;
+    color: $text-color;
+  }
+
+  .form-group {
+    margin-bottom: 1.5rem;
+    label {
+      display: block;
+      margin-bottom: 0.5rem;
+      font-weight: 500;
+      color: $text-color;
+      font-size: 0.9rem;
+    }
+    input,
+    textarea {
+      width: 100%;
+      padding: 0.85rem 1rem;
+      border-radius: 10px;
+      border: 1px solid $border-color;
+      font-size: 1rem;
+      transition: all 0.2s ease;
+      &:focus {
+        outline: none;
+        border-color: $primary-color;
+        box-shadow: 0 0 0 3px rgba(79, 70, 229, 0.2);
+      }
+    }
+    textarea {
+      min-height: 100px;
+      resize: vertical;
+    }
+  }
+
+  .image-upload-group {
+    .image-preview-container {
+      margin-bottom: 1rem;
+      p {
+        font-size: 0.8rem;
+        color: $text-light;
+        margin: 0 0 0.5rem 0;
+      }
+      img {
+        width: 120px;
+        height: 75px;
+        object-fit: cover;
+        border-radius: 8px;
+        border: 1px solid $border-color;
+      }
+    }
+    input[type="file"] {
+      color: transparent;
+    }
+    input[type="file"]::file-selector-button {
+      @include button-base;
+      background-color: $light-gray;
+      color: $text-color;
+      border: 1px solid $border-color;
+      padding: 0.5rem 1rem;
+      font-size: 0.875rem;
+      margin-right: 1rem;
+      &:hover {
+        background-color: darken($light-gray, 5%);
+        transform: translateY(0);
+        box-shadow: none;
+      }
+    }
+  }
+
+  .modal-actions {
+    display: flex;
+    justify-content: flex-end;
+    gap: 1rem;
+    margin-top: 2rem;
+    .btn {
+      @include button-base;
+    }
+    .btn-secondary {
+      background-color: $light-gray;
+      color: $text-color;
+      border: 1px solid $border-color;
+      &:hover {
+        background-color: darken($light-gray, 5%);
+      }
+    }
+    .btn-primary {
+      background-color: $primary-color;
+      color: white;
+      &:hover {
+        background-color: darken($primary-color, 10%);
+      }
+    }
+  }
+
+  .package-modal-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 1.5rem;
+    padding-bottom: 1rem;
+    border-bottom: 1px solid $border-color;
+  }
+
+  .crud-table {
+    margin-top: 1.5rem;
+    box-shadow: none;
+    border: 1px solid $border-color;
+  }
+}
+
+/* ==========================================================================
+   5. Responsivitas
+   ========================================================================== */
+@media (max-width: 768px) {
+  .crud-table {
+    box-shadow: none;
+    border: 1px solid $border-color;
+
+    thead {
+      display: none;
+    }
+
+    tr {
+      display: block;
+      margin-bottom: 1rem;
+      border-bottom: 2px solid $primary-color !important;
+      border-radius: 8px;
+      padding: 0.5rem;
+    }
+
+    tr:last-child {
+      margin-bottom: 0;
+    }
+
+    td {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      border-bottom: 1px solid $border-color;
+      padding: 0.75rem 0.5rem;
+
+      &::before {
+        content: attr(data-label);
+        font-weight: 600;
+        color: $text-light;
+        text-transform: uppercase;
+        font-size: 0.75rem;
+        padding-right: 1rem;
+      }
+    }
+
+    td:last-child {
+      border-bottom: none;
+    }
+  }
+}

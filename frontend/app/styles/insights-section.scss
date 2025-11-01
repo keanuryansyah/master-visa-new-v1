@@ -1,0 +1,92 @@
+#insights-section {
+
+  .insights-content {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    gap: 2rem;
+
+  }
+
+  .insights-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1.5rem;
+    width: 100%;
+  }
+
+  .insight-card {
+    background: #ffffff;
+    border-radius: 16px;
+    overflow: hidden;
+    text-align: left;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.07);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+
+    &:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 8px 30px rgba(0, 0, 0, 0.1);
+    }
+
+    .card-image {
+      line-height: 0; // Menghilangkan spasi di bawah gambar
+      img {
+        width: 100%;
+        object-fit: cover;
+      }
+    }
+
+    .card-text {
+      padding: 1.5rem;
+
+      h3 {
+        font-size: 1.2rem;
+        font-weight: 500;
+        color: #1a202c;
+        margin: 0 0 0.75rem 0;
+        line-height: 1.4;
+      }
+
+      p {
+        font-size: 0.95rem;
+        color: #4a5568;
+        line-height: 1.6;
+        margin-bottom: 1rem;
+      }
+
+      a {
+        color: var(--col-blue-1); // Biru
+        // font-weight: 600;
+        text-decoration: none;
+        font-size: 0.9rem;
+
+        &:hover {
+          text-decoration: underline;
+        }
+      }
+    }
+  }
+
+  .read-more-btn {
+    &:hover {
+      background-color: var(--col-purple-1);
+      color: white;
+    }
+  }
+
+  // Media queries untuk responsivitas
+  @media (max-width: 1024px) {
+    .insights-grid {
+      grid-template-columns: 1fr 1fr;
+    }
+  }
+  @media (max-width: 768px) {
+    .insights-grid {
+      grid-template-columns: 1fr;
+    }
+    .section-title {
+      font-size: 2rem !important;
+    }
+  }
+}

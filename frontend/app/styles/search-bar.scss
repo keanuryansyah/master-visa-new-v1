@@ -1,0 +1,41 @@
+    .search-bar {
+      position: relative;
+      width: 100%;
+      max-width: 480px;
+
+      input {
+        width: 100%;
+        padding: 1rem 3.5rem 1rem 1.5rem;
+        border: 1px solid #e2e8f0;
+        border-radius: 16px;
+        font-size: 1rem;
+        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+        outline: none;
+        transition: border-color 0.3s ease;
+        &:focus {
+          border-color: #6b46c1; // Warna ungu saat focus
+        }
+      }
+
+      button {
+        position: absolute;
+        right: 8px;
+        top: 50%;
+        transform: translateY(-50%);
+        padding: 0.5rem 1rem;
+        color: white;
+        border-radius: 16px;
+        background-color: var(--col-purple-1);
+        //Warnaungugelapcolor: white;
+        border: none;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        cursor: pointer;
+        transition: background-color 0.3s ease;
+        font-size: 18px;
+        &:hover {
+          background-color: #44337a;
+        }
+      }
+    }

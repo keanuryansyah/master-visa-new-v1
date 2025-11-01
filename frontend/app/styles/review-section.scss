@@ -1,0 +1,108 @@
+#review-section {
+  background: #ffffff;
+  padding: 5rem 0;
+  overflow: hidden;
+
+  .container {
+    overflow: hidden;
+
+    .review-content {
+      display: flex;
+      flex-direction: column;
+      gap: 1rem;
+      align-items: center;
+
+      > h2 {
+        margin-bottom: 1rem;
+      }
+      .tagline {
+        color: var(--col-blue-1);
+      }
+
+      .review-row {
+        width: 100%;
+        overflow: hidden;
+        position: relative; /* Ditambahkan untuk memposisikan pseudo-elements */
+
+        /* EFEK FADE/BLUR DITAMBAHKAN DI SINI */
+        &::before,
+        &::after {
+          content: "";
+          position: absolute;
+          top: 0;
+          bottom: 0;
+          width: 150px; /* Lebar area fade, bisa disesuaikan */
+          z-index: 2;
+          pointer-events: none; /* Agar tidak mengganggu interaksi mouse */
+        }
+
+        &::before {
+          left: 0;
+          background: linear-gradient(to right, #ffffff, transparent);
+        }
+
+        &::after {
+          right: 0;
+          background: linear-gradient(to left, #ffffff, transparent);
+        }
+        /* AKHIR DARI EFEK FADE/BLUR */
+
+        .review-track {
+          display: flex;
+          gap: 1.5rem;
+          width: max-content;
+          animation: marquee 120s linear infinite;
+          will-change: transform;
+
+          .review-card {
+            flex: 0 0 auto;
+            background: #fff;
+            border: 1px solid rgba(0, 0, 0, 0.1);
+            border-radius: 16px;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.05);
+            padding: 1.5rem;
+            width: 280px;
+            display: flex;
+            flex-direction: column;
+            gap: 0.5rem;
+            text-align: left;
+            transition: transform 0.3s ease;
+
+            .flag {
+              width: 32px;
+              height: 32px;
+              border-radius: 8px;
+            }
+
+            p {
+              font-size: 0.95rem;
+              color: #333;
+              line-height: 1.4;
+              font-style: italic;
+            }
+
+            span {
+              font-size: 0.85rem;
+              color: #666;
+            }
+          }
+        }
+
+        &.reverse .review-track {
+          animation-direction: reverse;
+          animation-duration: 120s;
+          padding-bottom: 1px;
+        }
+      }
+    }
+  }
+}
+
+@keyframes marquee {
+  0% {
+    transform: translateX(0);
+  }
+  100% {
+    transform: translateX(-50%);
+  }
+}

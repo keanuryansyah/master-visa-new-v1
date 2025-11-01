@@ -1,0 +1,159 @@
+#why-us-section {
+  background-color: #ffffff;
+
+  .why-us-content {
+    display: grid;
+    grid-template-columns: 1.5fr 1fr;
+    gap: 2rem;
+    align-items: center;
+  }
+
+  // Kolom Kiri: Features
+  .features-column {
+    .section-title {
+      margin-bottom: 2rem;
+      color: #1a202c;
+    }
+
+    .features-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 2rem;
+    }
+
+    .feature-item {
+      display: flex;
+      align-items: flex-start;
+      gap: 1rem;
+      text-align: left;
+      flex-direction: column;
+
+      .icon-wrapper {
+        img {
+            width: 48px;
+            object-fit: cover;
+        }
+      }
+      
+      .text-content {
+        h3 {
+          font-size: 1.2rem;
+          font-weight: 500;
+          color: var(--col-purple-1);
+          margin: 0 0 0.5rem 0;
+        }
+        p {
+          font-size: 0.95rem;
+          color: #4a5568;
+          line-height: 1.6;
+        }
+      }
+    }
+  }
+
+  // Kolom Kanan: Cara Kerja
+  .how-it-works-column {
+    background-color: var(--col-blue-1);
+    color: white;
+    padding: 2rem;
+    border-radius: 16px;
+    box-shadow: 0 10px 30px rgba(29, 78, 216, 0.3);
+
+    > h3 {
+      text-align: center;
+      font-size: 1.5rem;
+      font-weight: 600;
+      letter-spacing: 1px;
+      margin: 0 0 2.5rem 0;
+    }
+
+    .timeline {
+      list-style: none;
+      padding: 0;
+      margin: 0;
+      position: relative;
+      
+      // Garis vertikal
+      &::before {
+        content: '';
+        position: absolute;
+        top: 12px;
+        left: 12px;
+        bottom: 50px;
+        width: 2px;
+        background-color: #ffffff;
+        transform: translateX(-50%);
+      }
+    }
+
+    .timeline-item {
+      display: flex;
+      align-items: flex-start;
+      gap: 1.5rem;
+      position: relative;
+      
+      &:not(:last-child) {
+        margin-bottom: 2rem;
+      }
+
+      .timeline-icon {
+        background-color: #1d4ed8;
+        border-radius: 50%;
+        z-index: 1;
+        
+        svg {
+          width: 24px;
+          height: 24px;
+        }
+      }
+      
+      .timeline-content {
+        h4 {
+          font-size: 1.2rem;
+          font-weight: 500;
+          margin: 0 0 0.4rem 0;
+        }
+        p {
+          font-size: 0.9rem;
+          line-height: 1.5;
+          opacity: 0.9;
+        }
+      }
+    }
+
+    .consultation-btn {
+      display: block;
+      width: 100%;
+      text-align: center;
+      background-color: transparent;
+      border: 1px solid rgba(255, 255, 255, 0.8);
+      color: white;
+      border-radius: 50px;
+      text-decoration: none;
+      margin-top: 2rem;
+      transition: background-color 0.3s ease, color 0.3s ease;
+
+      &:hover {
+        background-color: white;
+        color: #1d4ed8;
+      }
+    }
+  }
+
+  // Media queries untuk responsivitas
+  @media (max-width: 1024px) {
+    .why-us-content {
+      grid-template-columns: 1fr;
+      gap: 4rem;
+    }
+    .features-column .section-title {
+       text-align: center;
+    }
+  }
+
+  @media (max-width: 768px) {
+    .features-grid {
+      grid-template-columns: 1fr !important;
+    }
+  }
+}
