@@ -17,7 +17,8 @@ import "flag-icons/css/flag-icons.min.css";
 import CtaSection from "./components/CtaSection";
 import SearchBar from "./components/SearchBar";
 
-const API_URL = process.env.NEXT_PUBLIC_API_URL || "http://localhost:4000";
+// const API_URL = process.env.NEXT_PUBLIC_API_URL || "http://localhost:4000";
+const API_URL = "";
 
 // Komponen Ikon
 const IconChevronDown = () => (

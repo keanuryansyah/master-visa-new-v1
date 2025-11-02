@@ -6,17 +6,37 @@ import cookieParser from "cookie-parser";
 import adminRoutes from "./routes/admin.routes.js";
 import countryRoutes from "./routes/countries.routes.js";
 import uploadRoutes from "./routes/upload.routes.js";
-import packageRoutes from "./routes/packages.routes.js"; // <-- PASTIKAN INI ADA
+import packageRoutes from "./routes/packages.routes.js";
 
 const app = express();
 
-// Konfigurasi CORS
+// --- PERBAIKAN CORS ADA DI SINI ---
+
+// Daftar domain yang diizinkan untuk mengakses API Anda
+const allowedOrigins = [
+    'http://localhost:3000',      // Untuk development di lokal
+    'https://mastervisaku.com',   // Untuk domain produksi utama
+    'https://www.mastervisaku.com' // Untuk domain produksi dengan 'www'
+];
+
+// Konfigurasi CORS baru yang lebih cerdas
 app.use(cors({
-    origin: "http://localhost:3000",
+    origin: function (origin, callback) {
+        // Izinkan jika origin (sumber permintaan) ada di dalam daftar di atas
+        // atau jika tidak ada origin sama sekali (misalnya dari aplikasi seperti Postman)
+        if (!origin || allowedOrigins.indexOf(origin) !== -1) {
+            callback(null, true);
+        } else {
+            callback(new Error('Origin tidak diizinkan oleh kebijakan CORS'));
+        }
+    },
     credentials: true,
     methods: ["GET", "POST", "PUT", "DELETE", "OPTIONS"],
     allowedHeaders: ["Content-Type", "Authorization"],
 }));
+
+// --- AKHIR DARI PERBAIKAN CORS ---
+
 
 // 2. Jadikan folder 'public' dapat diakses secara publik
 // Baris ini PENTING agar gambar yang di-upload bisa ditampilkan
@@ -29,8 +49,8 @@ app.use(cookieParser());
 // 3. Daftarkan SEMUA rute Anda
 app.use("/api/admin", adminRoutes);
 app.use("/api/countries", countryRoutes);
-app.use("/api/upload", uploadRoutes); // <-- INI YANG PALING PENTING & KEMUNGKINAN BESAR HILANG
-app.use("/api/packages", packageRoutes); // <-- DAN PASTIKAN INI JUGA ADA
+app.use("/api/upload", uploadRoutes);
+app.use("/api/packages", packageRoutes);
 
 
 // Rute testing
