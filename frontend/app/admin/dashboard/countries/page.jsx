@@ -3,7 +3,9 @@ import { useState, useEffect } from "react";
 import Link from "next/link";
 import "./styles/countries.scss"; // Pastikan path ini benar
 
-const API_URL = process.env.NEXT_PUBLIC_API_URL || "http://localhost:4000";
+// const API_URL = process.env.NEXT_PUBLIC_API_URL || "http://localhost:4000";
+
+const API_URL = "";
 
 // State awal untuk Negara (tetap dengan slug)
 const initialCountryState = {
