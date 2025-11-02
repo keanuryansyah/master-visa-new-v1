@@ -8,7 +8,8 @@ import "../styles/service-list-section.scss";
 import CtaSection from "../components/CtaSection";
 import SearchBar from "../components/SearchBar";
 
-const API_URL = process.env.NEXT_PUBLIC_API_URL || "http://localhost:4000";
+// const API_URL = process.env.NEXT_PUBLIC_API_URL || "http://localhost:4000";
+const API_URL = "";
 
 // --- Komponen untuk Tampilan "Corporate" (Formulir) ---
 const CorporateView = () => (
