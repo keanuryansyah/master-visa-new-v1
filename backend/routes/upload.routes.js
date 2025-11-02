@@ -1,13 +1,28 @@
 import express from 'express';
 import multer from 'multer';
 import path from 'path';
+import { fileURLToPath } from 'url';
+import fs from 'fs';
 
 const router = express.Router();
+
+// --- PERBAIKAN UTAMA: Gunakan Path Absolut ---
+
+// Baris ini mendapatkan path direktori saat ini (folder 'routes')
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = path.dirname(__filename);
+
+// Baris ini membuat path absolut ke folder 'public/uploads'
+const uploadDirectory = path.join(__dirname, '../public/uploads');
+
+// Baris ini memastikan folder tujuan benar-benar ada sebelum multer mencoba menulis
+fs.mkdirSync(uploadDirectory, { recursive: true });
 
 // Konfigurasi Multer untuk penyimpanan file
 const storage = multer.diskStorage({
     destination: function (req, file, cb) {
-        cb(null, 'public/uploads/'); // Tentukan folder penyimpanan
+        // Gunakan path absolut yang sudah kita definisikan
+        cb(null, uploadDirectory);
     },
     filename: function (req, file, cb) {
         // Buat nama file yang unik untuk menghindari duplikasi
@@ -15,6 +30,8 @@ const storage = multer.diskStorage({
         cb(null, file.fieldname + '-' + uniqueSuffix + path.extname(file.originalname));
     }
 });
+// --- AKHIR DARI PERBAIKAN ---
+
 
 // Filter untuk hanya menerima file gambar
 const fileFilter = (req, file, cb) => {
@@ -34,13 +51,13 @@ router.post('/', upload.single('featuredImage'), (req, res) => {
         return res.status(400).json({ message: 'No file uploaded.' });
     }
 
-    // Jika upload berhasil, kembalikan URL publik dari file tersebut
-    // Contoh: http://localhost:4000/uploads/featuredImage-1678886400000.jpg
-    const imageUrl = `${req.protocol}://${req.get('host')}/uploads/${req.file.filename}`;
+    // URL publik tidak boleh mengandung 'localhost'. Kita akan membuatnya relatif.
+    // Frontend akan menggabungkannya dengan domain utama.
+    const imageUrl = `/uploads/${req.file.filename}`;
 
     res.status(201).json({
         message: 'File uploaded successfully',
-        imageUrl: imageUrl,
+        imageUrl: imageUrl, // Kirim URL relatif
     });
 });
 
