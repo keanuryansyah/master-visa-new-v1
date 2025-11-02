@@ -27,7 +27,7 @@ app.use(express.json());
 app.use(cookieParser());
 
 // 3. Daftarkan SEMUA rute Anda
-app.use("/admin", adminRoutes);
+app.use("/api/admin", adminRoutes);
 app.use("/api/countries", countryRoutes);
 app.use("/api/upload", uploadRoutes); // <-- INI YANG PALING PENTING & KEMUNGKINAN BESAR HILANG
 app.use("/api/packages", packageRoutes); // <-- DAN PASTIKAN INI JUGA ADA
