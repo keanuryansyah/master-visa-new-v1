@@ -284,7 +284,7 @@ export default function ManageCountriesPage() {
 
   return (
     <div className="crud-container">
-      <Link href="/admin" className="btn-back">
+      <Link href="/admin/dashboard" className="btn-back">
         <ArrowLeftIcon />
         <span>Back to Dashboard</span>
       </Link>
