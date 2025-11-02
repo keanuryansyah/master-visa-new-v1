@@ -4,7 +4,8 @@ import { useParams, useRouter } from "next/navigation";
 import CtaSection from "../../components/CtaSection"; // Path relatif dari [slug]/[packageSlug]/
 import "./detail-page.scss";
 
-const API_URL = process.env.NEXT_PUBLIC_API_URL || "http://localhost:4000";
+// const API_URL = process.env.NEXT_PUBLIC_API_URL || "http://localhost:4000";
+const API_URL = "";
 
 // --- Helper Components ---
 const formatRupiah = (number) => {
