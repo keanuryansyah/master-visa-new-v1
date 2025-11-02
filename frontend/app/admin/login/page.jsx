@@ -2,6 +2,9 @@
 import { useState } from "react";
 import "./login.scss";
 
+// --- PERBAIKAN #1: Gunakan URL API relatif yang anti gagal ---
+const API_URL = "";
+
 export default function AdminLogin() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
@@ -14,22 +17,21 @@ export default function AdminLogin() {
     setLoading(true);
 
     try {
+      // --- PERBAIKAN #2: Pastikan ada garis miring setelah API_URL ---
       const res = await fetch(
-        `${
-          process.env.NEXT_PUBLIC_API_URL || "http://localhost:4000"
-        }/admin/login`,
+        `${API_URL}/api/admin/login`, // URL yang benar dan konsisten
         {
           method: "POST",
           headers: { "Content-Type": "application/json" },
           body: JSON.stringify({ email, password }),
-          credentials: "include", // 🔥 ini penting!
+          credentials: "include", // ini penting untuk cookie
         }
       );
 
       const data = await res.json();
       if (!res.ok) throw new Error(data.message || "Login failed");
 
-      // redirect ke dashboard
+      // redirect ke dashboard setelah login berhasil
       window.location.href = "/admin/dashboard";
     } catch (err) {
       console.error(err);
