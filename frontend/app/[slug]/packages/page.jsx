@@ -5,7 +5,7 @@ import Link from "next/link"; // ✨ [BARU] Import komponen Link
 import CtaSection from "../../components/CtaSection"; // Sesuaikan path jika berbeda
 import "./packages-page.scss";
 
-const API_URL = process.env.NEXT_PUBLIC_API_URL || "http://localhost:4000";
+const API_URL = process.env.NEXT_PUBLIC_API_URL;
 // const API_URL = "";
 
 // Fungsi helper untuk format Rupiah

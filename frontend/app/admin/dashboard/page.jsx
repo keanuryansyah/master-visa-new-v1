@@ -48,9 +48,7 @@ export default function AdminDashboard() {
     setIsLoggingOut(true);
     try {
       const res = await fetch(
-        `${
-          process.env.NEXT_PUBLIC_API_URL || "http://localhost:4000"
-        }/admin/logout`,
+        `${process.env.NEXT_PUBLIC_API_URL}/admin/logout`,
         { method: "POST", credentials: "include" }
       );
       if (!res.ok) throw new Error("Logout failed.");
