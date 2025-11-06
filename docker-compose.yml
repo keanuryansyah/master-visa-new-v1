@@ -5,10 +5,10 @@ services:
     image: mysql:8.0
     container_name: mastervisa-db
     environment:
-      MYSQL_ROOT_PASSWORD: mastervisaku.com@pass
-      MYSQL_DATABASE: master-visa
-      MYSQL_USER: visa_user
-      MYSQL_PASSWORD: mastervisaku.com@pass
+      MYSQL_ROOT_PASSWORD: mastervisaku.com@pass # change this on prod
+      MYSQL_DATABASE: master-visa # change this on prod
+      MYSQL_USER: visa_user # change this on prod
+      MYSQL_PASSWORD: mastervisaku.com@pass # change this on prod
     ports:
       - "3306:3306"
     volumes:
@@ -20,9 +20,9 @@ services:
     container_name: mastervisa-phpmyadmin
     environment:
       PMA_HOST: db
-      PMA_USER: visa_user
-      PMA_PASSWORD: mastervisaku.com@pass
-      PMA_PORT: 3306
+      PMA_USER: visa_user # change this on prod
+      PMA_PASSWORD: mastervisaku.com@pass # change this on prod
+      PMA_PORT: 3306 # change this on prod
     ports:
       - "8080:80"
     depends_on:
@@ -37,7 +37,7 @@ services:
       - db
     environment:
       NODE_ENV: production
-      DATABASE_URL: "mysql://visa_user:mastervisaku.com@pass@db:3306/master-visa"
+      DATABASE_URL: "mysql://visa_user:mastervisaku.com@pass@db:3306/master-visa" # change this on prod
       PORT: 3000
     ports:
       - "3000:3000"
