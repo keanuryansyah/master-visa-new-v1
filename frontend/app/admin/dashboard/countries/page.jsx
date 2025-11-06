@@ -4,7 +4,7 @@ import Link from "next/link";
 import "./styles/countries.scss"; // Pastikan path ini benar
 import Image from "next/image";
 
-const API_URL = process.env.NEXT_PUBLIC_API_URL || "http://localhost:4000";
+const API_URL = process.env.NEXT_PUBLIC_API_URL;
 
 // const API_URL = "";
 

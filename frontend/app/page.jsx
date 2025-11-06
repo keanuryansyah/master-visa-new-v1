@@ -17,7 +17,7 @@ import "flag-icons/css/flag-icons.min.css";
 import CtaSection from "./components/CtaSection";
 import SearchBar from "./components/SearchBar";
 
-const API_URL = process.env.NEXT_PUBLIC_API_URL || "http://localhost:4000";
+const API_URL = process.env.NEXT_PUBLIC_API_URL;
 // const API_URL = "";
 
 // Komponen Ikon
@@ -406,34 +406,42 @@ export default function Home() {
                 </p>
               )}
 
-              {countries.map((country) => (
-                <div
-                  className="country-card"
-                  key={country.id}
-                  style={{ backgroundImage: `url(${country.featuredImage})` }}
-                >
-                  <div className="card-content">
-                    <h3>{country.name}</h3>
-                    <div className="card-buttons">
-                      <Link
-                        href={`/${country.slug}/packages`}
-                        className="global-btn card-btn btn-requirement"
-                      >
-                        Persyaratan
-                      </Link>
-                      <Link
-                        href={`/${country.slug}/packages`}
-                        className="global-btn card-btn btn-booking"
-                      >
-                        Booking
-                        <div>
-                          <i className="fa-solid fa-arrow-right"></i>
-                        </div>
-                      </Link>
+              {countries.map((country) => {
+                console.log(API_URL + country.featuredImage);
+
+                return (
+                  <div
+                    className="country-card"
+                    key={country.id}
+                    style={{
+                      backgroundImage: `url(${
+                        API_URL + country.featuredImage
+                      })`,
+                    }}
+                  >
+                    <div className="card-content">
+                      <h3>{country.name}</h3>
+                      <div className="card-buttons">
+                        <Link
+                          href={`/${country.slug}/packages`}
+                          className="global-btn card-btn btn-requirement"
+                        >
+                          Persyaratan
+                        </Link>
+                        <Link
+                          href={`/${country.slug}/packages`}
+                          className="global-btn card-btn btn-booking"
+                        >
+                          Booking
+                          <div>
+                            <i className="fa-solid fa-arrow-right"></i>
+                          </div>
+                        </Link>
+                      </div>
                     </div>
                   </div>
-                </div>
-              ))}
+                );
+              })}
             </div>
 
             <p className="consultation-prompt">
