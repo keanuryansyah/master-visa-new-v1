@@ -1,0 +1,56 @@
+version: "3.8"
+
+services:
+  db:
+    image: mysql:8.0
+    container_name: mastervisa-db
+    environment:
+      MYSQL_ROOT_PASSWORD: mastervisaku.com@pass
+      MYSQL_DATABASE: master-visa
+      MYSQL_USER: visa_user
+      MYSQL_PASSWORD: mastervisaku.com@pass
+    ports:
+      - "3306:3306"
+    volumes:
+      - db_data:/var/lib/mysql
+    restart: always
+
+  phpmyadmin:
+    image: phpmyadmin:latest
+    container_name: mastervisa-phpmyadmin
+    environment:
+      PMA_HOST: db
+      PMA_USER: visa_user
+      PMA_PASSWORD: mastervisaku.com@pass
+      PMA_PORT: 3306
+    ports:
+      - "8080:80"
+    depends_on:
+      - db
+    restart: always
+
+  backend:
+    image: visa-be
+    container_name: mastervisa-backend
+    restart: always
+    depends_on:
+      - db
+    environment:
+      NODE_ENV: production
+      DATABASE_URL: "mysql://visa_user:mastervisaku.com@pass@db:3306/master-visa"
+      PORT: 3000
+    ports:
+      - "3030:3000"
+    command: >
+      sh -c "npx prisma migrate deploy &&
+             npx prisma db seed &&
+             npm start"
+  frontend:
+    image: visa-fe
+    container_name: mastervisa-frontend
+    ports:
+      - "3000:3000"
+    restart: always
+
+volumes:
+  db_data:

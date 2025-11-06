@@ -17,8 +17,8 @@ import "flag-icons/css/flag-icons.min.css";
 import CtaSection from "./components/CtaSection";
 import SearchBar from "./components/SearchBar";
 
-// const API_URL = process.env.NEXT_PUBLIC_API_URL || "http://localhost:4000";
-const API_URL = "";
+const API_URL = process.env.NEXT_PUBLIC_API_URL || "http://localhost:4000";
+// const API_URL = "";
 
 // Komponen Ikon
 const IconChevronDown = () => (
@@ -359,7 +359,7 @@ export default function Home() {
                 {[...reviewsRow1, ...reviewsRow1].map((item, i) => (
                   <div className="review-card" key={i}>
                     <span className={item.flag + " flag"}></span>
-                    <p>"{item.text}"</p>
+                    <p>&quot;{item.text}&quot;</p>
                     <span>— {item.name}</span>
                   </div>
                 ))}
@@ -371,7 +371,7 @@ export default function Home() {
                 {[...reviewsRow2, ...reviewsRow2].map((item, i) => (
                   <div className="review-card" key={i}>
                     <span className={item.flag + " flag"}></span>
-                    <p>"{item.text}"</p>
+                    <p>&quot;{item.text}&quot;</p>
                     <span>— {item.name}</span>
                   </div>
                 ))}

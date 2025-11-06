@@ -2,10 +2,11 @@
 import { useState, useEffect } from "react";
 import Link from "next/link";
 import "./styles/countries.scss"; // Pastikan path ini benar
+import Image from "next/image";
 
-// const API_URL = process.env.NEXT_PUBLIC_API_URL || "http://localhost:4000";
+const API_URL = process.env.NEXT_PUBLIC_API_URL || "http://localhost:4000";
 
-const API_URL = "";
+// const API_URL = "";
 
 // State awal untuk Negara (tetap dengan slug)
 const initialCountryState = {
@@ -311,7 +312,7 @@ export default function ManageCountriesPage() {
             <tr key={country.id}>
               <td data-label="Image">
                 {country.featuredImage ? (
-                  <img src={country.featuredImage} alt={country.name} />
+                  <Image src={country.featuredImage} alt={country.name} />
                 ) : (
                   <span>No Image</span>
                 )}
@@ -382,7 +383,7 @@ export default function ManageCountriesPage() {
               {isEditingCountry && currentCountry.featuredImage && (
                 <div className="image-preview-container">
                   <p>Current Image:</p>
-                  <img
+                  <Image
                     src={currentCountry.featuredImage}
                     alt="Current Preview"
                   />
@@ -489,7 +490,7 @@ export default function ManageCountriesPage() {
               >
                 <p>No packages found for this country.</p>
                 <p style={{ color: "#6b7280", marginTop: "0.5rem" }}>
-                  Click 'Add New Package' to get started.
+                  Click &apos;Add New Package&apos; to get started.
                 </p>
               </div>
             )}

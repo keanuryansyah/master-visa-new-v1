@@ -14,33 +14,36 @@ const app = express();
 
 // Daftar domain yang diizinkan untuk mengakses API Anda
 const allowedOrigins = [
-    'http://localhost:3000',      // Untuk development di lokal
-    'https://mastervisaku.com',   // Untuk domain produksi utama
-    'https://www.mastervisaku.com' // Untuk domain produksi dengan 'www'
+  "http://localhost:3000", // Untuk development di lokal
+  "http://localhost:3030", // Untuk development di lokal
+  "https://mastervisaku.com", // Untuk domain produksi utama
+  "https://www.mastervisaku.com", // Untuk domain produksi dengan 'www'
+  "http://145.79.13.228",
 ];
 
 // Konfigurasi CORS baru yang lebih cerdas
-app.use(cors({
+app.use(
+  cors({
     origin: function (origin, callback) {
-        // Izinkan jika origin (sumber permintaan) ada di dalam daftar di atas
-        // atau jika tidak ada origin sama sekali (misalnya dari aplikasi seperti Postman)
-        if (!origin || allowedOrigins.indexOf(origin) !== -1) {
-            callback(null, true);
-        } else {
-            callback(new Error('Origin tidak diizinkan oleh kebijakan CORS'));
-        }
+      // Izinkan jika origin (sumber permintaan) ada di dalam daftar di atas
+      // atau jika tidak ada origin sama sekali (misalnya dari aplikasi seperti Postman)
+      if (!origin || allowedOrigins.indexOf(origin) !== -1) {
+        callback(null, true);
+      } else {
+        callback(new Error("Origin tidak diizinkan oleh kebijakan CORS"));
+      }
     },
     credentials: true,
     methods: ["GET", "POST", "PUT", "DELETE", "OPTIONS"],
     allowedHeaders: ["Content-Type", "Authorization"],
-}));
+  })
+);
 
 // --- AKHIR DARI PERBAIKAN CORS ---
 
-
 // 2. Jadikan folder 'public' dapat diakses secara publik
 // Baris ini PENTING agar gambar yang di-upload bisa ditampilkan
-app.use(express.static('public'));
+app.use(express.static("public"));
 
 // Middleware lain
 app.use(express.json());
@@ -52,10 +55,11 @@ app.use("/api/countries", countryRoutes);
 app.use("/api/upload", uploadRoutes);
 app.use("/api/packages", packageRoutes);
 
-
 // Rute testing
 app.get("/", (req, res) => {
-    res.send("✅ Backend API aktif dan berjalan di port 4000");
+  res.send("✅ Backend API aktif dan berjalan di port 4000");
 });
 
-app.listen(4000, () => console.log("🚀 Server running at http://localhost:4000"));
+app.listen(4000, () =>
+  console.log("🚀 Server running at http://localhost:4000")
+);
