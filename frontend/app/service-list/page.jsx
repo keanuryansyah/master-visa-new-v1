@@ -115,7 +115,9 @@ export default function ServiceList() {
           <div
             className="country-card"
             key={country.id} // Sekarang bisa menggunakan ID karena sudah unik
-            style={{ backgroundImage: `url(${country.featuredImage})` }}
+            style={{
+              backgroundImage: `url(${API_URL + country.featuredImage})`,
+            }}
           >
             <div className="card-content">
               <h3>{country.name}</h3>
