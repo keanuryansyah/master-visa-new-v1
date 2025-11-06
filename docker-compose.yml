@@ -30,17 +30,19 @@ services:
     restart: always
 
   backend:
-    image: zed378/visa-be:prod
+    build:
+      context: ./backend
+      dockerfile: Dockerfile
     container_name: mastervisa-backend
     restart: always
     depends_on:
       - db
     environment:
       NODE_ENV: production
-      DATABASE_URL: "mysql://visa_user:mastervisaku.com@pass@db:3306/master-visa" # change this on prod
-      PORT: 3000
+      DATABASE_URL: "mysql://visa_user:mastervisaku.com@pass@db:3306/master-visa"
+      PORT: 4000
     ports:
-      - "4000:3000"
+      - "4000:4000"
     volumes:
       - ./backend/public:/app/public
     command: >
@@ -52,7 +54,9 @@ services:
       "
 
   frontend:
-    image: zed378/visa-fe:prod
+    build:
+      context: ./frontend
+      dockerfile: Dockerfile
     container_name: mastervisa-frontend
     ports:
       - "3000:3000"
