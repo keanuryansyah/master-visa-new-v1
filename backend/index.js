@@ -1,6 +1,8 @@
 import express from "express";
 import cors from "cors";
 import cookieParser from "cookie-parser";
+import path from "path";
+import { fileURLToPath } from "url";
 
 // 1. Pastikan semua file rute diimpor
 import adminRoutes from "./routes/admin.routes.js";
@@ -9,16 +11,20 @@ import uploadRoutes from "./routes/upload.routes.js";
 import packageRoutes from "./routes/packages.routes.js";
 
 const app = express();
+app.use(express.urlencoded({ extended: true }));
 
 // --- PERBAIKAN CORS ADA DI SINI ---
 
 // Daftar domain yang diizinkan untuk mengakses API Anda
 const allowedOrigins = [
   "http://localhost:3000", // Untuk development di lokal
-  "http://localhost:3030", // Untuk development di lokal
+  "http://localhost:4000", // Untuk development di lokal
   "https://mastervisaku.com", // Untuk domain produksi utama
   "https://www.mastervisaku.com", // Untuk domain produksi dengan 'www'
   "http://145.79.13.228",
+  "http://145.79.13.228:8484",
+  "http://145.79.13.228:4000",
+  "https://be.mastervisaku.com",
 ];
 
 // Konfigurasi CORS baru yang lebih cerdas
@@ -43,7 +49,10 @@ app.use(
 
 // 2. Jadikan folder 'public' dapat diakses secara publik
 // Baris ini PENTING agar gambar yang di-upload bisa ditampilkan
-app.use(express.static("public"));
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = path.dirname(__filename);
+console.log("Static uploads path:", path.join(__dirname, "public/uploads"));
+app.use("/uploads", express.static(path.join(__dirname, "public/uploads")));
 
 // Middleware lain
 app.use(express.json());

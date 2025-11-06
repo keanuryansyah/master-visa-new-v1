@@ -40,13 +40,16 @@ services:
       DATABASE_URL: "mysql://visa_user:mastervisaku.com@pass@db:3306/master-visa"
       PORT: 3000
     ports:
-      - "3000:3000"
+      - "4000:3000"
     volumes:
       - ./backend/public:/app/public
     command: >
-      sh -c "npx prisma migrate deploy &&
-             npx prisma db seed &&
-             npm start"
+      sh -c "
+        echo '🚀 Starting backend...';
+        npx prisma migrate deploy || npx prisma db push;
+        npx prisma db seed --if-present || echo '⚠️ Skipping seed (maybe already seeded)';
+        npm start
+      "
 
   frontend:
     image: zed378/visa-fe:prod
